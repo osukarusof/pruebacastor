@@ -13,9 +13,7 @@ public class Util {
 
     private final ModelMapper modelMapper;
 
-
     public <T> ApiResponseUtil<Object> mapaRespuesta (T data) {
-
         return ApiResponseUtil.builder()
                 .status(HttpStatus.OK.value())
                 .message("This sequence is a mutant")

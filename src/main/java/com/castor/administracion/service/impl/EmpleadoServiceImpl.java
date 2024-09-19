@@ -22,7 +22,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     private final EmpleadoRepository empleadoRepository;
     private final CargoRepository cargoRepository;
 
-    private Util util;
+    private final Util util;
 
     @Override
     public ApiResponseUtil<Object> obtnerTodaEmpleados() {

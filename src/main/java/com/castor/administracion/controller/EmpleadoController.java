@@ -23,6 +23,6 @@ public class EmpleadoController {
 
     @PostMapping("/")
     public ResponseEntity<ApiResponseUtil<Object>> registrarEmpleado(@Valid @RequestBody EmpleadoDto empleado) {
-        return  new ResponseEntity<>(null, HttpStatus.CREATED);
+        return  new ResponseEntity<>(empleadoService.registrarEmpleado(empleado), HttpStatus.CREATED);
     }
 }

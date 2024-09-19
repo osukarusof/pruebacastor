@@ -1,5 +1,6 @@
 package com.castor.administracion.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -40,5 +42,6 @@ public class EmpleadoDto {
     private String foto;
 
     @NotNull(message = "Este campo es requerido.")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate fecha;
 }
