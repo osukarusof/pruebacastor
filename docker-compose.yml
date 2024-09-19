@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: spring-boot-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/administracion?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: oscarcastor
+      SPRING_DATASOURCE_PASSWORD: w+U39?8BZ4o*
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: administracion
+      MYSQL_USER: oscarcastor
+      MYSQL_PASSWORD: w+U39?8BZ4o*
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
