@@ -18,6 +18,6 @@ public class EmpleadoController {
 
     @GetMapping("/")
     public ResponseEntity<ApiResponseUtil<Object>> obtnerTodaEmpleados () {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(empleadoService.obtnerTodaEmpleados(), HttpStatus.OK);
     }
 }
