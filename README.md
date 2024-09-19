@@ -102,52 +102,52 @@ Una vez que los contenedores estén funcionando, puedes acceder a la aplicación
 
 1. Ejecute el siguiente *script* para el debido funcionamiento de la aplicación
 
->```sql
->#Tabla de Cargos
+>```sql#Tabla de Cargos
+>#Tabla de cargos
 >CREATE TABLE cargos (
->   id_cargo INT PRIMARY KEY AUTO_INCREMENT,
->   nombre_cargo VARCHAR(50) NOT NULL
+>   id INT PRIMARY KEY AUTO_INCREMENT,
+>   nombre VARCHAR(50) NOT NULL
 >);
 >
 >#Tabla de empleados
 >CREATE TABLE empleados (
 >   id INT PRIMARY KEY AUTO_INCREMENT,
+>   cargo_id INT NOT NULL,
 >   cedula INT UNIQUE NOT NULL,
 >   nombre VARCHAR(100) NOT NULL,
 >   foto VARCHAR(255) NOT NULL,
 >   fecha_ingreso DATE NOT NULL,
->   id_cargo INT,
->   FOREIGN KEY (id_cargo) REFERENCES Cargos(id_cargo)
+>   FOREIGN KEY (cargo_id) REFERENCES cargos(id)
 >);
 >
 >#Tabla de Estados de Solicitud
 >CREATE TABLE estado_solicitudes (
->   id_estado_solicitud INT PRIMARY KEY AUTO_INCREMENT,
->   nombre_estado VARCHAR(50) NOT NULL
+>   id INT PRIMARY KEY AUTO_INCREMENT,
+>   nombre VARCHAR(50) NOT NULL
 >);
 >
 >#Tabla de solicitudes
 >CREATE TABLE solicitudes (
->   nro_solicitud INT PRIMARY KEY AUTO_INCREMENT,
+>   id INT PRIMARY KEY AUTO_INCREMENT,
+>   empleado_id INT NOT NULL,
+>   estado_solicitud_id INT NOT NULL,
 >   fecha_solicitud DATE NOT NULL,
->   id_solicitante INT,
->   id_estado_solicitud INT,
->   FOREIGN KEY (id_solicitante) REFERENCES Empleados(id),
->   FOREIGN KEY (id_estado_solicitud) REFERENCES EstadoSolicitudes(id_estado_solicitud)
+>   FOREIGN KEY (empleado_id) REFERENCES empleados(id),
+>   FOREIGN KEY (estado_solicitud_id) REFERENCES estado_solicitudes(id)
 >);
 >
 >#Tabla de Servicios
 >CREATE TABLE servicios (
->   id_servicio INT PRIMARY KEY AUTO_INCREMENT,
->   nombre_servicio VARCHAR(100) NOT NULL
+>   id INT PRIMARY KEY AUTO_INCREMENT,
+>   nombre VARCHAR(100) NOT NULL
 >);
 >
 >#Tabla de Relación entre Solicitudes y Servicios (Muchos a Muchos)
 >CREATE TABLE solicitud_servicios (
->   id_solicitud INT,
->   id_servicio INT,
->   PRIMARY KEY (id_solicitud, id_servicio),
->   FOREIGN KEY (id_solicitud) REFERENCES Solicitudes(nro_solicitud),
->   FOREIGN KEY (id_servicio) REFERENCES Servicios(id_servicio)
+>   solicitud_id INT NOT NULL,
+>   servicio_id INT NOT NULL,
+>   PRIMARY KEY (solicitud_id, servicio_id),
+>   FOREIGN KEY (solicitud_id) REFERENCES solicitudes(id),
+>   FOREIGN KEY (servicio_id) REFERENCES servicios(id)
 >);
 >```
