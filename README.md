@@ -104,13 +104,13 @@ Una vez que los contenedores estén funcionando, puedes acceder a la aplicación
 
 >```sql
 >#Tabla de Cargos
->CREATE TABLE Cargos (
+>CREATE TABLE cargos (
 >   id_cargo INT PRIMARY KEY AUTO_INCREMENT,
 >   nombre_cargo VARCHAR(50) NOT NULL
 >);
 >
->#Tabla de Empleados
->CREATE TABLE Empleados (
+>#Tabla de empleados
+>CREATE TABLE empleados (
 >   id INT PRIMARY KEY AUTO_INCREMENT,
 >   cedula INT UNIQUE NOT NULL,
 >   nombre VARCHAR(100) NOT NULL,
@@ -121,13 +121,13 @@ Una vez que los contenedores estén funcionando, puedes acceder a la aplicación
 >);
 >
 >#Tabla de Estados de Solicitud
->CREATE TABLE EstadoSolicitudes (
+>CREATE TABLE estado_solicitudes (
 >   id_estado_solicitud INT PRIMARY KEY AUTO_INCREMENT,
 >   nombre_estado VARCHAR(50) NOT NULL
 >);
 >
->#Tabla de Solicitudes
->CREATE TABLE Solicitudes (
+>#Tabla de solicitudes
+>CREATE TABLE solicitudes (
 >   nro_solicitud INT PRIMARY KEY AUTO_INCREMENT,
 >   fecha_solicitud DATE NOT NULL,
 >   id_solicitante INT,
@@ -137,13 +137,13 @@ Una vez que los contenedores estén funcionando, puedes acceder a la aplicación
 >);
 >
 >#Tabla de Servicios
->CREATE TABLE Servicios (
+>CREATE TABLE servicios (
 >   id_servicio INT PRIMARY KEY AUTO_INCREMENT,
 >   nombre_servicio VARCHAR(100) NOT NULL
 >);
 >
 >#Tabla de Relación entre Solicitudes y Servicios (Muchos a Muchos)
->CREATE TABLE SolicitudServicios (
+>CREATE TABLE solicitud_servicios (
 >   id_solicitud INT,
 >   id_servicio INT,
 >   PRIMARY KEY (id_solicitud, id_servicio),
