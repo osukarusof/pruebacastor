@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.Set;
+
 @Data
 @Entity
 @Builder
@@ -17,4 +20,23 @@ public class EmpleadoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "cedula", nullable = false)
+    private Long cedula;
+
+    @Column(name = "nombre", nullable = false)
+    private String nombre;
+
+    @Column(name = "foto", nullable = false)
+    private String foto;
+
+    @Column(name = "fecha_ingreso")
+    private LocalDate fecha;
+
+    @ManyToOne
+    @JoinColumn(name = "cargo_id", referencedColumnName = "id")
+    private CargoEntity cargo;
+
+    @OneToMany(mappedBy = "empleado")
+    private Set<SolicitudEntity> solicitudEntities;
 }

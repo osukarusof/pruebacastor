@@ -6,23 +6,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Data
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "estadosolucitudes")
-public class EstadoSolicitudEntity {
+@Table(name = "solicitud_servicios")
+public class SolicitudServicioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
+    @ManyToOne
+    @JoinColumn(name = "servicio_id", referencedColumnName = "id")
+    private ServicioEntity servicio;
 
-    @OneToMany(mappedBy = "estadoSolicitud")
-    private Set<SolicitudEntity> solicitudes;
+    @ManyToOne
+    @JoinColumn(name = "solicitud_id", referencedColumnName = "id")
+    private SolicitudEntity solicitud;
+
 }

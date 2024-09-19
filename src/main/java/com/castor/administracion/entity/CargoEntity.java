@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @Entity
 @Builder
@@ -17,4 +19,10 @@ public class CargoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "nombre", nullable = false)
+    private String nombre;
+
+    @OneToMany(mappedBy = "cargo")
+    private Set<EmpleadoEntity> empleados;
 }

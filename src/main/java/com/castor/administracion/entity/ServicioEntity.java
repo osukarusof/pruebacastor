@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.Set;
+
 @Data
 @Entity
 @Builder
@@ -17,4 +20,10 @@ public class ServicioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "fecha_solicitud")
+    private LocalDate fecha;
+
+    @OneToMany(mappedBy = "servicio")
+    private Set<SolicitudServicioEntity> solicitudServicios;
 }
