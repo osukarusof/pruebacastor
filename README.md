@@ -102,7 +102,7 @@ Una vez que los contenedores estén funcionando, puedes acceder a la aplicación
 
 1. Ejecute el siguiente *script* para el debido funcionamiento de la aplicación
 
->```sql#Tabla de Cargos
+>```sql
 >#Tabla de cargos
 >CREATE TABLE cargos (
 >   id INT PRIMARY KEY AUTO_INCREMENT,
