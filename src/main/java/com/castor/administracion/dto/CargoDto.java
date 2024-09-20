@@ -12,11 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CargoDto {
-
     @Positive(message = "El campo Id debe ser un número positivo.")
     private Long id;
-
-    @NotNull(message = "Este campo es requerido.")
-    @NotNull(message = "Este campo es requerido.")
     private String nombre;
 }

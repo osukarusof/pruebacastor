@@ -38,9 +38,14 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     @Override
     public ApiResponseUtil<Object> registrarEmpleado(EmpleadoDto empleado) {
 
-        Optional<CargoEntity> cargoOpt = cargoRepository.findById(empleado.getCargoId());
+        Optional<CargoEntity> cargoOpt = cargoRepository.findById(empleado.getCargo().getId());
         if(cargoOpt.isEmpty()) {
             throw new NotFoundException("El cargo no existe o se encuentra inactivo.");
+        }
+
+        Optional<EmpleadoEntity> empleadoOpt = empleadoRepository.findByCedula(empleado.getCedula());
+        if(empleadoOpt.isPresent()) {
+            throw new NotFoundException("El numero de cedeula ya esta registrado");
         }
 
         EmpleadoEntity empleadoEntity = util.convertTo(empleado, EmpleadoEntity.class);
