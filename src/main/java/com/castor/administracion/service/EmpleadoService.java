@@ -8,4 +8,8 @@ public interface EmpleadoService {
     ApiResponseUtil<Object> obtnerTodaEmpleados();
 
     ApiResponseUtil<Object> registrarEmpleado (EmpleadoDto empleado);
+
+    ApiResponseUtil<Object> actualizarEmpleado(Long id, EmpleadoDto empleado);
+
+    ApiResponseUtil<Object> eliminarEmpleado(Long id);
 }

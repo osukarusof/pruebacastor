@@ -25,4 +25,16 @@ public class EmpleadoController {
     public ResponseEntity<ApiResponseUtil<Object>> registrarEmpleado(@Valid @RequestBody EmpleadoDto empleado) {
         return  new ResponseEntity<>(empleadoService.registrarEmpleado(empleado), HttpStatus.CREATED);
     }
+
+    @PutMapping("/{empleadoId}")
+    public ResponseEntity<ApiResponseUtil<Object>> actualizarEmpleado(
+            @PathVariable Long  empleadoId,
+            @Valid @RequestBody EmpleadoDto empleado) {
+        return  new ResponseEntity<>(empleadoService.actualizarEmpleado(empleadoId,empleado), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{empleadoId}")
+    public  ResponseEntity<Object> eliminarEmpleado( @PathVariable Long  empleadoId) {
+        return  new ResponseEntity<>(null, HttpStatus.OK);
+    }
 }

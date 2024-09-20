@@ -10,10 +10,14 @@ import com.castor.administracion.service.EmpleadoService;
 import com.castor.administracion.utils.ApiResponseUtil;
 import com.castor.administracion.utils.Util;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,10 +33,16 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 
         List<EmpleadoEntity> listaEmpleados = empleadoRepository.findAll();
         if (listaEmpleados.isEmpty()) {
-            return null;
+            throw new NotFoundException("No exite ningun empleado registrado");
         }
 
-        return null;
+        List<EmpleadoDto> listaEmpleadoMap = listaEmpleados
+                .stream()
+                .map(empleado -> util.convertTo(empleado, EmpleadoDto.class))
+                .collect(Collectors.toList());
+
+
+        return util.mapaRespuesta(listaEmpleadoMap);
     }
 
     @Override
@@ -55,5 +65,41 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         EmpleadoDto empleadoDto = util.convertTo(empleadoSave, EmpleadoDto.class);
 
         return util.mapaRespuesta(empleadoDto);
+    }
+
+    @Override
+    public ApiResponseUtil<Object> actualizarEmpleado(Long id, EmpleadoDto empleado) {
+
+        Optional<EmpleadoEntity> empleadoOpt = empleadoRepository.findById(id);
+        if (empleadoOpt.isEmpty()) {
+            throw new NotFoundException("El empleado no existe o se encuentra inactivo");
+        }
+
+        Optional<CargoEntity> cargoOpt = cargoRepository.findById(empleado.getCargo().getId());
+        if(cargoOpt.isEmpty()) {
+            throw new NotFoundException("El cargo no existe o se encuentra inactivo.");
+        }
+
+        EmpleadoEntity empleadoEntity = empleadoOpt.get();
+        BeanUtils.copyProperties(empleado, empleadoEntity);
+
+        EmpleadoEntity empleadoSave = empleadoRepository.save(empleadoEntity);
+        EmpleadoDto empleadoDto = util.convertTo(empleadoSave, EmpleadoDto.class);
+
+        return util.mapaRespuesta(empleadoDto);
+    }
+
+    @Override
+    public ApiResponseUtil<Object> eliminarEmpleado(Long id) {
+
+        Optional<EmpleadoEntity> empleadoOpt = empleadoRepository.findById(id);
+        if (empleadoOpt.isEmpty()) {
+            throw new NotFoundException("El empleado no existe o se encuentra inactivo");
+        }
+
+        EmpleadoEntity empleadoEntity = empleadoOpt.get();
+        EmpleadoEntity empleadoSave = empleadoRepository.save(empleadoEntity);
+
+        return util.mapaRespuesta(new ArrayList<>());
     }
 }
