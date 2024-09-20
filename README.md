@@ -28,7 +28,7 @@ El proyecto tiene como objetivo desarrollar una solución en Java para gestionar
 
 >```mermaid
 >erDiagram
->   EMPLEADOS {
+>   empleados {
 >       int id PK
 >       int cedula
 >       string nombre
@@ -36,34 +36,35 @@ El proyecto tiene como objetivo desarrollar una solución en Java para gestionar
 >       date fecha_ingreso
 >       int id_cargo FK
 >   }
->   CARGOS {
->       int id_cargo PK
->       string nombre_cargo
+>   cargos {
+>       int id PK
+>       string nombre
 >   }
->   ESTADOSOLICITUDES {
->       int id_estado_solicitud PK
->       string nombre_estado
+>   estado_solicitudes {
+>       int id PK
+>       string nombre
 >   }
->   SOLICITUDES {
->       int nro_solicitud PK
+>   solicitudes {
+>       int id PK
 >       date fecha_solicitud
->       int id_solicitante FK
->       int id_estado_solicitud FK
+>       int empleado_id FK
+>       int estado_solicitud_id FK
 >   }
->   SERVICIOS {
->       int id_servicio PK
->       string nombre_servicio
->   }
->   SOLICITUDSERVICIOS {
->       int id_solicitud FK
->       int id_servicio FK
+>   servicios {
+>       int id PK
+>       string nombre
 >   }
 >
->   CARGOS ||--o{ EMPLEADOS : "uno a muchos"
->   EMPLEADOS ||--o{ SOLICITUDES : "uno a muchos"
->   ESTADOSOLICITUDES ||--o{ SOLICITUDES : "uno a muchos"
->   SOLICITUDES ||--o{ SOLICITUDSERVICIOS : "uno a muchos"
->   SERVICIOS ||--o{ SOLICITUDSERVICIOS : "uno a muchos"
+>   solicitud_servicios {
+>       int solicitud_id FK
+>       int servicio_id FK
+>   }
+>
+>   cargos ||--o{ empleados : "uno a muchos"
+>   empleados ||--o{ solicitudes : "uno a muchos"
+>   estado_solicitudes ||--o{ solicitudes : "uno a muchos"
+>   solicitudes ||--o{ solicitud_servicios : "uno a muchos"
+>   servicios ||--o{ solicitud_servicios : "uno a muchos"
 >```
 
 # Guía para Ejecutar la Aplicación
