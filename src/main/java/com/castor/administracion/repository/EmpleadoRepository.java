@@ -12,15 +12,12 @@ import java.util.Optional;
 @Repository
 public interface EmpleadoRepository extends JpaRepository<EmpleadoEntity, Long> {
 
-    @Query(value = "select e from EmpleadoEntity e")
+    @Query(value = "select e from EmpleadoEntity e where e.activo = true order by e.id desc")
     List<EmpleadoEntity> findAll();
 
-
-    @Query(value = "select e from EmpleadoEntity e where e.id = :empleadoId")
+    @Query(value = "select e from EmpleadoEntity e where e.id = :empleadoId and e.activo = true")
     Optional<EmpleadoEntity> findById(@Param("empleadoId") Long empleadoId);
 
-    @Query(value = "select e from EmpleadoEntity e where e.cedula = :cedula ")
-    Optional<EmpleadoEntity> findByCedula(
-            @Param("cedula") Long cedula
-    );
+    @Query(value = "select e from EmpleadoEntity e where e.cedula = :cedula")
+    Optional<EmpleadoEntity> findByCedula(@Param("cedula") Long cedula);
 }

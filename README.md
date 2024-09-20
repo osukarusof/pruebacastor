@@ -151,3 +151,24 @@ Una vez que los contenedores estén funcionando, puedes acceder a la aplicación
 >   FOREIGN KEY (servicio_id) REFERENCES servicios(id)
 >);
 >```
+2. Ejecute el siguiente *script* para inserar los cargos
+>```sql
+>INSERT INTO cargos (nombre) VALUES ('Scrum Master');
+>INSERT INTO cargos (nombre) VALUES ('Desarrollador');
+>INSERT INTO cargos (nombre) VALUES ('QA');
+>INSERT INTO cargos (nombre) VALUES ('PO');
+>```
+2. Ejecute el siguiente *script* para inserar los esatos de solicitudes
+>```sql
+>INSERT INTO estado_solicitudes (nombre) VALUES ('Pendiente');
+>INSERT INTO estado_solicitudes (nombre) VALUES ('En Proceso');
+>INSERT INTO estado_solicitudes (nombre) VALUES ('Completado');
+>INSERT INTO estado_solicitudes (nombre) VALUES ('Cancelado');
+>```
+3. Ejecute el siguiente *script* para inserar los esatos de servicios
+>```sql
+>INSERT INTO servicios (nombre) VALUES ('Desarrollo de Software');
+>INSERT INTO servicios (nombre) VALUES ('Testing de Software');
+>INSERT INTO servicios (nombre) VALUES ('Consultoría Tecnológica');
+>INSERT INTO servicios (nombre) VALUES ('Mantenimiento de Sistemas');
+>```

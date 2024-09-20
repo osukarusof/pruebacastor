@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -13,15 +15,15 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "solucitudes")
+@Table(name = "solicitudes")
 public class SolicitudEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
+    @Column(name = "fecha_solicitud")
+    private LocalDate fechaSolicitud;
 
     @ManyToOne
     @JoinColumn(name = "empleado_id", referencedColumnName = "id")
@@ -31,6 +33,11 @@ public class SolicitudEntity {
     @JoinColumn(name = "estado_solicitud_id", referencedColumnName = "id")
     private EstadoSolicitudEntity estadoSolicitud;
 
-    @OneToMany(mappedBy = "solicitud")
-    private Set<SolicitudServicioEntity> solicitudServicios;
+    @ManyToMany
+    @JoinTable(
+            name = "solicitud_servicios",
+            joinColumns = @JoinColumn(name = "solicitud_id"),
+            inverseJoinColumns = @JoinColumn(name = "servicio_id")
+    )
+    private Set<ServicioEntity> servicios = new HashSet<>();
 }

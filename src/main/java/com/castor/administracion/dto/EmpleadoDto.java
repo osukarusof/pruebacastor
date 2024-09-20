@@ -26,9 +26,6 @@ public class EmpleadoDto {
     @Positive(message = "El campo Id debe ser un número positivo.")
     private Long id;
 
-   //@NotNull(message = "Este campo es requerido.")
-   //@Positive(message = "El campo cargoId debe ser un número positivo.")//private Long cargoId;
-
     @NotNull(message = "Este campo es requerido.")
     @Positive(message = "El campo cedula debe ser un número positivo.")
     private Long cedula;

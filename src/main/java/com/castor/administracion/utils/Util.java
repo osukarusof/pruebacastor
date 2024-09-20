@@ -16,7 +16,7 @@ public class Util {
     public <T> ApiResponseUtil<Object> mapaRespuesta (T data) {
         return ApiResponseUtil.builder()
                 .status(HttpStatus.OK.value())
-                .message("This sequence is a mutant")
+                .message("Transacciona exitosa")
                 .data(data)
                 .fieldErrors(new ArrayList<>())
                 .build();

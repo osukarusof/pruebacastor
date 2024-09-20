@@ -13,7 +13,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "estadosolucitudes")
+@Table(name = "estado_solicitudes")
 public class EstadoSolicitudEntity {
 
     @Id

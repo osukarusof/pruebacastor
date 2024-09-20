@@ -30,8 +30,12 @@ public class EmpleadoEntity {
     @Column(name = "foto", nullable = false)
     private String foto;
 
-    @Column(name = "fecha_ingreso")
+    @Column(name = "fecha_ingreso", nullable = false)
     private LocalDate fecha;
+
+    @Column(name = "activo", nullable = false)
+    @Builder.Default
+    private Boolean activo = true;
 
     @ManyToOne
     @JoinColumn(name = "cargo_id", referencedColumnName = "id")

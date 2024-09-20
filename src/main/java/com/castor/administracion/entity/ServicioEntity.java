@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -21,9 +22,9 @@ public class ServicioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fecha_solicitud")
-    private LocalDate fecha;
+    @ManyToMany(mappedBy = "servicios")
+    private Set<SolicitudEntity> solicitudes = new HashSet<>();
 
-    @OneToMany(mappedBy = "servicio")
-    private Set<SolicitudServicioEntity> solicitudServicios;
+    //@OneToMany(mappedBy = "servicio")
+    //private Set<SolicitudServicioEntity> solicitudServicios;
 }

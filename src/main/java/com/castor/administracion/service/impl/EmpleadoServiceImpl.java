@@ -11,7 +11,6 @@ import com.castor.administracion.utils.ApiResponseUtil;
 import com.castor.administracion.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -98,7 +97,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         }
 
         EmpleadoEntity empleadoEntity = empleadoOpt.get();
-        EmpleadoEntity empleadoSave = empleadoRepository.save(empleadoEntity);
+        empleadoEntity.setActivo(false);
+        empleadoRepository.save(empleadoEntity);
 
         return util.mapaRespuesta(new ArrayList<>());
     }
